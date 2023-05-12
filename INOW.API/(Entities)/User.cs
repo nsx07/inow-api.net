@@ -1,7 +1,10 @@
-﻿namespace INOW.API._Entities_
+﻿using INOW.API._Models_;
+
+namespace INOW.API._Entities_
 {
-    public partial class User : Base<int>
+    public partial class User : EntityBase, IIdentifiable<long>
     {
+        public long Id { get; set; }
         public string Name { get; set; }
 
         public string FamilyName { get; set; }
