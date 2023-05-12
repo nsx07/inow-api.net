@@ -19,7 +19,7 @@ namespace INOW.API._Controllers_
             {
                 bool delete = await base.service.Delete(id);
                 if (delete) {
-                    return this.StatusCode(StatusCodes.Status200OK);
+                    return this.StatusCode(StatusCodes.Status200OK, delete);
                 }
                 return this.StatusCode(StatusCodes.Status204NoContent);
             }
@@ -58,7 +58,12 @@ namespace INOW.API._Controllers_
         {
             try
             {
-                return await base.service.Add(entity);
+                long id = await base.service.Add(entity);
+                if (id % 2 == 0)
+                {
+                    return this.StatusCode(StatusCodes.Status200OK, id);
+                }
+                return this.StatusCode(StatusCodes.Status400BadRequest);
             }
             catch (Exception e)
             {
