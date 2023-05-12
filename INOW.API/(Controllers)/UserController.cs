@@ -13,24 +13,57 @@ namespace INOW.API._Controllers_
         {
         }
 
-        public override async Task<bool> Delete(long id)
+        public override async Task<dynamic> Delete(long id)
         {
-            return await base.service.Delete(id);
+            try
+            {
+                bool delete = await base.service.Delete(id);
+                if (delete) {
+                    return this.StatusCode(StatusCodes.Status200OK);
+                }
+                return this.StatusCode(StatusCodes.Status204NoContent);
+            }
+            catch (Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+
         }
 
-        public override async Task<User> Get(long id)
+        public override async Task<dynamic> Get(long id)
         {
-            return await base.service.Get(id);
+            try
+            {
+                return await base.service.Get(id);
+            }
+            catch (Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
         }
 
-        public override async Task<ICollection<User>> GetAll()
+        public override async Task<dynamic> GetAll()
         {
-            return await base.service.GetAll(); 
+            try
+            {
+                return await base.service.GetAll(); 
+            }
+            catch (Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
         }
 
-        public override async Task<long> Post([FromBody] User entity)
+        public override async Task<dynamic> Post([FromBody] User entity)
         {
-            return await base.service.Add(entity);
+            try
+            {
+                return await base.service.Add(entity);
+            }
+            catch (Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
         }
     }
 }

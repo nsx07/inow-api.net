@@ -14,17 +14,17 @@ namespace INOW.API._Models_
         }
 
         [HttpGet]
-        public abstract Task<ICollection<TEntity>> GetAll();
+        public abstract Task<dynamic> GetAll();
 
 
         [HttpGet("{id}")]
-        public abstract Task<TEntity> Get(TKey id);
+        public abstract Task<dynamic> Get(TKey id);
 
         [HttpPost]
-        public abstract Task<TKey> Post([FromBody] TEntity entity);
+        public abstract Task<dynamic> Post([FromBody] TEntity entity);
 
 
         [HttpDelete("{id}")]
-        public abstract Task<Boolean> Delete(TKey id);
+        public abstract Task<dynamic> Delete(TKey id);
     }
 }
