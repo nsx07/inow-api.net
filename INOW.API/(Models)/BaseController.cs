@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace INOW.API._Models_
+namespace INOW.API.Models
 {
     public abstract class BaseController<TEntity, TKey, TService> : ControllerBase 
         where TEntity : EntityBase, IIdentifiable<TKey>, 

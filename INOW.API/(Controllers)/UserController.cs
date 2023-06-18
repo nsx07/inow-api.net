@@ -1,9 +1,9 @@
-﻿using INOW.API._Entities_;
-using INOW.API._Models_;
-using INOW.API._Services_;
+﻿using INOW.API.Entities;
+using INOW.API.Models;
+using INOW.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace INOW.API._Controllers_
+namespace INOW.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

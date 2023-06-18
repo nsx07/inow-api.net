@@ -1,7 +1,7 @@
-﻿using INOW.API._Entities_;
-using INOW.API._Models_;
+﻿using INOW.API.Entities;
+using INOW.API.Models;
 
-namespace INOW.API._Services_
+namespace INOW.API.Services
 {
     public partial class UserService : ServiceBase<User, long>
     {

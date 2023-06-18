@@ -1,5 +1,5 @@
-using INOW.API._Controllers_;
-using INOW.API._Services_;
+
+using INOW.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

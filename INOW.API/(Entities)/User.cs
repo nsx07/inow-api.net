@@ -1,6 +1,6 @@
-﻿using INOW.API._Models_;
+﻿using INOW.API.Models;
 
-namespace INOW.API._Entities_
+namespace INOW.API.Entities
 {
     public partial class User : EntityBase, IIdentifiable<long>
     {

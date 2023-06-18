@@ -1,5 +1,5 @@
 ﻿
-namespace INOW.API._Models_
+namespace INOW.API.Models
 {
     public abstract class ServiceBase<TEntity, TKey> where TEntity : EntityBase
     {

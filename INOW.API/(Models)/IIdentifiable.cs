@@ -1,4 +1,4 @@
-﻿namespace INOW.API._Models_
+﻿namespace INOW.API.Models
 {
     public interface IIdentifiable<TKey>
     {
