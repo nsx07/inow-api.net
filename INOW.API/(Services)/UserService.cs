@@ -28,6 +28,8 @@ namespace INOW.API.Services
         public override async Task<ICollection<User>> GetAll()
         {
             return await Task.Run(() => {
+                
+
                 List<User> users = new List<User>();
                 return users;
             });

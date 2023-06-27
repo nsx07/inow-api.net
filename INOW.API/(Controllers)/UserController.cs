@@ -7,7 +7,7 @@ namespace INOW.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : BaseController<User, long, UserService>
+    public partial class UserController : BaseController<User, long, UserService>
     {
         public UserController(UserService service) : base(service)
         {
