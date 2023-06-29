@@ -1,30 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using INOW.API.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace INOW.API.Models
 {
-    public abstract class BaseController<TEntity, TKey, TService> : ControllerBase 
-        where TEntity : EntityBase, IIdentifiable<TKey>, 
-        new() where TService : ServiceBase<TEntity, TKey>
+    public abstract class BaseController<TEntity, TKey, TService, TRepository> : ControllerBase 
+        where TEntity : EntityBase, IIdentifiable<TKey>
+        where TRepository: IRepository<TEntity, TKey>
+        where TService : IServiceBase<TEntity, TKey, TRepository>
     {
-        protected ServiceBase<TEntity, TKey> service;
+        protected IServiceBase<TEntity, TKey, TRepository> service;
 
-        public BaseController(ServiceBase<TEntity, TKey> service)
+        public BaseController(IServiceBase<TEntity, TKey, TRepository> service)
         {
             this.service = service;
         }
 
-        [HttpGet]
-        public abstract Task<dynamic> GetAll();
-
-
-        [HttpGet("{id}")]
-        public abstract Task<dynamic> Get(TKey id);
-
-        [HttpPost]
-        public abstract Task<dynamic> Post([FromBody] TEntity entity);
-
-
-        [HttpDelete("{id}")]
-        public abstract Task<dynamic> Delete(TKey id);
     }
 }
