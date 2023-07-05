@@ -25,8 +25,8 @@ Host.CreateDefaultBuilder(args)
 
 
 // Add services to the container.
-
-builder.Services.AddNHibernate(builder.Configuration.GetConnectionString("sqlserver"));
+Console.WriteLine(Environment.GetEnvironmentVariable("DATABASE_URL"));
+builder.Services.AddNHibernate(Environment.GetEnvironmentVariable("DATABASE_URL"));
 builder.Services.AddControllers();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<UserService>();

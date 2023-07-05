@@ -18,8 +18,8 @@ namespace INOW.API.Core
             var configuration = new Configuration();
             configuration.DataBaseIntegration(c =>
             {
-                c.Dialect<PostgreSQLDialect>();
-                c.ConnectionString = System.Environment.GetEnvironmentVariable("DATABASE_URL");
+                c.Dialect<PostgreSQL81Dialect>();
+                c.ConnectionString = connectionString;
                 c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
                 c.SchemaAction = SchemaAutoAction.Update;
                 c.LogFormattedSql = true;
