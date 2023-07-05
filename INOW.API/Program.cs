@@ -3,6 +3,7 @@ using INOW.API.Entities;
 using INOW.API.Models;
 using INOW.API.Persistence;
 using INOW.API.Services;
+using INOW.API.Utils;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -25,8 +26,8 @@ Host.CreateDefaultBuilder(args)
 
 
 // Add services to the container.
-Console.WriteLine(Environment.GetEnvironmentVariable("DATABASE_URL"));
-builder.Services.AddNHibernate(Environment.GetEnvironmentVariable("DATABASE_URL"));
+
+builder.Services.AddNHibernate(Util.getConnectionStringFromEnvironment());
 builder.Services.AddControllers();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<UserService>();
