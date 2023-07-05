@@ -8,6 +8,22 @@ using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Host.CreateDefaultBuilder(args)
+    .ConfigureWebHostDefaults(webBuilder =>
+    {
+
+        // For running in Railway
+        var portVar = Environment.GetEnvironmentVariable("PORT");
+        if (portVar is { Length: > 0 } && int.TryParse(portVar, out int port))
+        {
+            webBuilder.ConfigureKestrel(options =>
+            {
+                options.ListenAnyIP(port);
+            });
+        }
+    });
+
+
 // Add services to the container.
 
 builder.Services.AddNHibernate(builder.Configuration.GetConnectionString("sqlserver"));
