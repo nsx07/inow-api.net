@@ -27,7 +27,7 @@ Host.CreateDefaultBuilder(args)
 
 // Add services to the container.
 
-builder.Services.AddNHibernate(Util.getConnectionStringFromEnvironment());
+builder.Services.AddNHibernate(builder.Configuration.GetConnectionString("postgresql"));
 builder.Services.AddControllers();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<UserService>();
