@@ -16,10 +16,6 @@ RUN dotnet build "INOW.API.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "INOW.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-RUN dotnet dev-certs https --clean
-RUN dotnet dev-certs https 
-RUN dotnet dev-certs https --trust
-
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
