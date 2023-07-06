@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var port = builder.Configuration["PORT"];
 
 //set listening urls
-builder.WebHost.UseUrls($"http://*:{port};https://*:{port};http://localhost:5001");
+builder.WebHost.UseUrls($"http://*:{port};http://localhost:5001");
 
 
 // Add services to the container.
