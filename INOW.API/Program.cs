@@ -13,7 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(options =>
 {
     var portVar = Environment.GetEnvironmentVariable("PORT");
-    Console.WriteLine(portVar ?? "NULL PORT");
     if (portVar is { Length: > 0 } && int.TryParse(portVar, out int port))
     {
         options.ListenAnyIP(port, listenOptions =>
@@ -46,16 +45,14 @@ app.UseCors(c => {
     c.AllowAnyHeader();
 }); 
 
+app.UseSwagger();
+app.UseSwaggerUI();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
 }
+
 
 app.UseAuthorization();
 app.MapControllers();
