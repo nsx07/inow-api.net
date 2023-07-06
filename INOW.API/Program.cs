@@ -40,6 +40,12 @@ var app = builder.Build();
 var rec = Receiver.Initialize(builder.Configuration.GetValue<string>("rabbitmq"));
 rec.Receive();
 
+app.UseCors(c => {
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+    c.AllowAnyHeader();
+}); 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
