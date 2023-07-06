@@ -4,17 +4,11 @@ using INOW.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.ConfigureKestrel(options =>
-{
-    var portVar = Environment.GetEnvironmentVariable("PORT");
-    if (portVar is { Length: > 0 } && int.TryParse(portVar, out int port))
-    {
-        options.ListenAnyIP(port, listenOptions =>
-        {
-            listenOptions.UseHttps();
-        });
-    }
-});
+//retrieve port from environment variables
+var port = builder.Configuration["PORT"];
+
+//set listening urls
+builder.WebHost.UseUrls($"https://*:{port};http://localhost:5001");
 
 
 // Add services to the container.
