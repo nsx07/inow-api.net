@@ -16,7 +16,10 @@ builder.WebHost.ConfigureKestrel(options =>
     Console.WriteLine(portVar ?? "NULL PORT");
     if (portVar is { Length: > 0 } && int.TryParse(portVar, out int port))
     {
-        options.ListenAnyIP(port);
+        options.ListenAnyIP(port, listenOptions =>
+        {
+            listenOptions.UseHttps();
+        });
     }
 });
 
@@ -30,14 +33,7 @@ builder.Services.AddScoped<UserService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton(s => MongoClientResolver.Inialize(builder.Configuration));
-//builder.Services.AddSingleton(s =>
-//{
-//    var rec = Receiver.Initialize(builder.Configuration.GetValue<string>("rabbitmq"));
-//    rec.Receive();
-//    return rec;
-//});
 builder.Services.AddSwaggerGen();
-
 
 var app = builder.Build();
 
@@ -52,11 +48,10 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    //app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
 }
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
