@@ -39,11 +39,11 @@ var app = builder.Build();
 var rec = Receiver.Initialize(builder.Configuration.GetValue<string>("rabbitmq"));
 rec.Receive();
 
-app.UseCors(c => {
-    c.AllowAnyOrigin();
-    c.AllowAnyMethod();
-    //c.AllowAnyHeader();
-}); 
+//app.UseCors(c => {
+//    c.AllowAnyOrigin();
+//    c.AllowAnyMethod();
+//    c.AllowAnyHeader();
+//}); 
 
 app.UseSwagger();
 app.UseSwaggerUI();
