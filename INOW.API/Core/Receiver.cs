@@ -7,11 +7,22 @@ namespace INOW.API.Core
 {
     class Receiver
     {
-
+        private string connectionMQTT;
         protected static Receiver instance;
         private Thread handler;
 
-        private Receiver() { }
+        private Receiver() {
+        }
+
+        public static Receiver Initialize(string connectionMQTT)
+        {
+            instance = getInstance();
+            
+            instance.connectionMQTT = connectionMQTT;
+            Console.WriteLine(connectionMQTT);
+
+            return instance;
+        }
 
         public static Receiver getInstance()
         {
@@ -33,7 +44,8 @@ namespace INOW.API.Core
 
         private void IntervalReceiver()
         {
-            var factory = new ConnectionFactory { HostName = "localhost" };
+            Uri uri = new Uri(connectionMQTT);
+            var factory = new ConnectionFactory { Uri = uri};
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
