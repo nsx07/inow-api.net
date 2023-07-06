@@ -27,18 +27,19 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton(s => MongoClientResolver.Inialize(builder.Configuration));
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
 var rec = Receiver.Initialize(builder.Configuration.GetValue<string>("rabbitmq"));
 rec.Receive();
 
-app.UseCors(c =>
-{
-    c.AllowAnyOrigin();
-    c.AllowAnyMethod();
-    c.AllowAnyHeader();
-});
+app.UseCors("MyPolicy");
 
 app.UseSwagger();
 app.UseSwaggerUI();
