@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var port = builder.Configuration["PORT"];
 
 //set listening urls
-builder.WebHost.UseUrls($"https://*:{port};http://localhost:5001");
+builder.WebHost.UseUrls($"http://*:{port};https://*:{port};http://localhost:5001");
 
 
 // Add services to the container.
@@ -38,13 +38,13 @@ app.UseCors("MyPolicy");
 app.UseSwagger();
 app.UseSwaggerUI();
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseHttpsRedirection();
-}
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseHttpsRedirection();
+//}
 
 
-app.UseAuthorization();
+//app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
