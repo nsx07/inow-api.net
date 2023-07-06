@@ -1,12 +1,6 @@
 using INOW.API.Core;
-using INOW.API.Entities;
-using INOW.API.Models;
 using INOW.API.Persistence;
 using INOW.API.Services;
-using INOW.API.Utils;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System.Reflection.PortableExecutable;
 
 var builder = WebApplication.CreateBuilder(args);
 
