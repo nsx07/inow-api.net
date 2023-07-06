@@ -5,6 +5,10 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+RUN dotnet dev-certs https --clean
+RUN dotnet dev-certs https 
+RUN dotnet dev-certs https --trust
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["INOW.API.csproj", "."]
