@@ -40,9 +40,9 @@ var rec = Receiver.Initialize(builder.Configuration.GetValue<string>("rabbitmq")
 rec.Receive();
 
 app.UseCors(c => {
-    c.AllowAnyMethod();
     c.AllowAnyOrigin();
-    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    //c.AllowAnyHeader();
 }); 
 
 app.UseSwagger();
