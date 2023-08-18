@@ -1,6 +1,8 @@
 using INOW.API.Core;
+using INOW.API.Models;
 using INOW.API.Persistence;
 using INOW.API.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,10 @@ builder.Services.AddNHibernate(builder.Configuration.GetConnectionString("postgr
 builder.Services.AddControllers();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<UserService>();
+
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton(s => MongoClientResolver.Inialize(builder.Configuration));
